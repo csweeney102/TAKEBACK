@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Takeback</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <div class="wrapper" id="wrapperStyle">
+            <header>
+                <h2>Inventory Management</h2>
+            </header>
+            <main>
+                <div class="sceneContainer">                
+                    <div class="inventoryContainer"></div>
+                </div>
+				
+				<button class="back" onclick="history.back()">Go back</button>
+                
+                <div id="timer" class="timer-display"></div>
+				<div id="optionsContainer"></div>
+            </main>
+        </div>
+		
+		<script src="js/timer.js"></script>
+		<script src="js/inventory.js"></script>
+
+		<!-- Sets styles according to options without sourcing story.js -->
+        <script>
+			document.getElementById("wrapperStyle").style.fontSize = sessionStorage.getItem("tSize");
+			document.getElementById("wrapperStyle").style.color = sessionStorage.getItem("tColour");
+			document.getElementById("wrapperStyle").style.fontFamily = sessionStorage.getItem("tFont");
+			document.getElementById("wrapperStyle").style.backgroundColor = `rgba(0, 0, 0, ${sessionStorage.getItem("tBgOpacity")})`;
+		</script>
+    </body>
+</html>

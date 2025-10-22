@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Takeback</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+	
+    <body>
+        <div class="wrapper" id="wrapperStyle">
+            <header>
+                <h2>TAKEBACK</h2>
+            </header>
+            <main>
+                <div class="sceneContainer">
+					<div class="image-container">
+						<img src="images/portraits/hank_gameover.jpg" alt="End Game">  
+                    </div>
+                </div>
+                <div class="text-section">
+                    <div class="textContainer" id="dialogueBox">
+                        <p>You hear a gunshot. You race to the balcony and see the hostage has been shot. David stands there as the SWAT team race out and shoot him.</p>
+                        <p style="color: red; font-weight: bold;">You lose.</p>
+                    </div>
+                    <div id="optionsContainer">
+                        <button onclick="window.location.href='statistics.html'">Statistics</button>
+                    </div>
+                </div>
+            </main>
+        </div>
+		
+		<!-- Sets styles according to options without sourcing story.js -->
+        <script>
+			document.getElementById("wrapperStyle").style.fontSize = sessionStorage.getItem("tSize");
+			document.getElementById("wrapperStyle").style.color = sessionStorage.getItem("tColour");
+			document.getElementById("wrapperStyle").style.fontFamily = sessionStorage.getItem("tFont");
+			document.getElementById("wrapperStyle").style.backgroundColor = `rgba(0, 0, 0, ${sessionStorage.getItem("tBgOpacity")})`;
+		</script>
+    </body>
+</html>

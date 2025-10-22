@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>TAKEBACK LANDING PAGE</title>
+    <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+    <div class="wrapper" id="wrapperStyle">
+        <h1>Takeback</h1>
+        <p>
+            A hostage situation is evolving in New York City. A man has kidnapped the CEO of NeoSapiens - the largest humanoid Android company in the world.
+            As Android efforts prove futile to save the hostage, you, retired Detective Hank House, have been called to save the hostage. As you learn more
+            about the situation, you're given a choice; do you do your job and save the man who made your job redundant, or do you empathise with the dangerous
+            criminal beside him?
+            The choice is in your hands.
+        </p>
+
+        <form>
+            <label>Choose Difficulty:</label>
+            <label>
+                <input type="radio" name="difficulty" value="15" required>
+                Easy (15 minutes)
+            </label>
+            <label>
+                <input type="radio" name="difficulty" value="10" checked>
+                Medium (10 minutes)
+            </label>
+            <label>
+                <input type="radio" name="difficulty" value="5">
+                Hard (5 minutes)
+            </label>
+
+            <br>
+
+            <button id="startBtn" type="submit">Begin Game</button>
+            <button type="button" onclick="resumeGame()">RESUME GAME</button>
+            <button id="optnBtn" type="button" onclick="window.location.href='options.html'">Options</button>
+            <button id="accountBtn" type="button" onclick="window.location.href='AccountManagement.html'">Account Management</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Optional: sessionStorage.clear();
+
+            // Apply custom styles from options
+            document.getElementById("wrapperStyle").style.fontSize = sessionStorage.getItem("tSize");
+            document.getElementById("wrapperStyle").style.color = sessionStorage.getItem("tColour");
+            document.getElementById("wrapperStyle").style.fontFamily = sessionStorage.getItem("tFont");
+            document.getElementById("wrapperStyle").style.backgroundColor = `rgba(0, 0, 0, ${sessionStorage.getItem("tBgOpacity")})`;
+
+            // Start new game
+            document.addEventListener("submit", function (event) {
+                event.preventDefault();
+
+                let difficulty = parseInt(document.querySelector("input[name='difficulty']:checked").value, 10) * 60;
+				
+				// For statistics
+				if (difficulty == 900) {
+					sessionStorage.setItem("difficulty", "Easy");
+				} else if (difficulty == 600) {
+					sessionStorage.setItem("difficulty", "Medium");
+				} else if (difficulty == 300) {
+					sessionStorage.setItem("difficulty", "Hard");
+				}
+
+                let state = {
+                    "manifesto": false,
+                    "gunKey": false,
+                    "divorceLetter": false,
+                    "davidJobInfo": false,
+                    "gun": false
+                };
+                sessionStorage.setItem("state", JSON.stringify(state));
+
+                let choices = {
+                    "talkAndroid": false,
+                    "gunLoaded": false
+                };
+                sessionStorage.setItem("choices", JSON.stringify(choices));
+
+                sessionStorage.setItem("timeLimit", difficulty);
+                sessionStorage.setItem("currentBranchIndex", "0");
+                sessionStorage.setItem("davidEmotion", "5");
+
+                window.location.href = "opening.html";
+            });
+        });
+    </script>
+    <script src="js/saveInventory.js"></script>
+    <script src="js/saveLoad.js"></script>
+    <script src="js/utils.js"></script>
+</body>
+</html>

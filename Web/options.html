@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Takeback</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <div class="optnWrapper" id="wrapperStyle">
+            <h1>Options</h1>
+                <form>
+                    <!-- text size buttons -->
+                    <label>Choose Text Size:</label>
+                    <br>
+                    <label>
+                        <!--i want it as it runs a method for each button press-->
+                        <input type="radio" name="tSize" value="x-small" required>
+                        Extra Small
+                    </label>
+                    <label>
+                        <input type="radio" name="tSize" value="small" >
+                        Small
+                    </label>
+                    <label>
+                        <input type="radio" name="tSize" value="medium" checked>
+                        Medium
+                    </label>
+                    <label>
+                        <input type="radio" name="tSize" value="large">
+                        Large
+                    </label>
+                    <label>
+                        <input type="radio" name="tSize" value="x-large">
+                        Extra Large
+                    </label>
+
+
+                     <!-- text colour buttons -->
+                      <br>
+                     <label>Choose Text Colour:</label>
+                     <br>
+                     <label>
+                         <!--i want it as it runs a method for each button press-->
+                         <input type="radio" name="tColour" value="black" required>
+                         Black
+                     </label>
+                     <label>
+                         <input type="radio" name="tColour" value="gray" >
+                         Grey
+                     </label>
+                     <label>
+                         <input type="radio" name="tColour" value="white" checked>
+                         White
+                     </label>
+                     <label>
+                         <input type="radio" name="tColour" value="red">
+                         Red
+                     </label>
+                     <label>
+                         <input type="radio" name="tColour" value="blue">
+                         Blue
+                     </label>
+
+                     <!-- text font buttons -->
+                     <br>
+                     <label>Choose Text Font:</label>
+                     <br>
+                     <label>
+                         <!--i want it as it runs a method for each button press-->
+                         <input type="radio" name="tFont" value="Verdana, sans-serif" required>
+                         Verdana
+                     </label>
+                     <label>
+                         <input type="radio" name="tFont" value="'Trebuchet MS', sans-serif" >
+                         Trebuchet MS
+                     </label>
+                     <label>
+                         <input type="radio" name="tFont" value="Georgia, serif" checked>
+                         Georgia
+                     </label>
+                     <label>
+                         <input type="radio" name="tFont" value="Garamond, serif">
+                         Garamond
+                     </label>
+                     <label>
+                         <input type="radio" name="tFont" value="'Courier New', monospace">
+                         Courier New
+                     </label>
+
+                     <!-- text background buttons -->
+                     <br>
+                     <label>Choose Text Background Opacity:</label>
+                     <br>
+                     <label>
+                         <!--i want it as it runs a method for each button press-->
+                         <input type="radio" name="tBgOpacity" value="0.00" required>
+                         0.00
+                     </label>
+                     <label>
+                         <input type="radio" name="tBgOpacity" value="0.25" >
+                         0.25
+                     </label>
+                     <label>
+                         <input type="radio" name="tBgOpacity" value="0.50" checked>
+                         0.50
+                     </label>
+                     <label>
+                         <input type="radio" name="tBgOpacity" value="0.75">
+                         0.75
+                     </label>
+                     <label>
+                         <input type="radio" name="tBgOpacity" value="1.00">
+                         1.00
+                     </label>
+
+                    <br>
+                     <button id="doneBtn" type="button" onclick="window.location.href='welcome.html'">Done</button>
+
+                </form>
+        </div>
+
+        <script>  
+            function updateTextSettings() {
+                // Text Size
+                const tSize = document.querySelector('input[name="tSize"]:checked');
+                if (tSize) {
+                    document.getElementById("wrapperStyle").style.fontSize = tSize.value;
+                    sessionStorage.setItem("tSize", tSize.value);
+                }
+
+                // Text Colour
+                const tColour = document.querySelector('input[name="tColour"]:checked');
+                if (tColour) {
+                    document.getElementById("wrapperStyle").style.color = tColour.value;
+                    sessionStorage.setItem("tColour", tColour.value);
+                }
+
+                // Text Font
+                const tFont = document.querySelector('input[name="tFont"]:checked');
+                if (tFont) {
+                    document.getElementById("wrapperStyle").style.fontFamily = tFont.value;
+                    sessionStorage.setItem("tFont", tFont.value);
+                }
+
+                // Background Opacity
+                const tBgOpacity = document.querySelector('input[name="tBgOpacity"]:checked');
+                if (tBgOpacity) {
+                    document.getElementById("wrapperStyle").style.backgroundColor = `rgba(0, 0, 0, ${tBgOpacity.value})`;
+                    sessionStorage.setItem("tBgOpacity", tBgOpacity.value);
+                }
+            }
+
+            // Adding event listeners to the radio buttons
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.addEventListener('change', updateTextSettings);
+            });
+
+            // Initially apply default settings
+            updateTextSettings();
+        </script>
+
+    </body>
+    
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Takeback</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <div class="wrapper" id="wrapperStyle">
+            <header>
+                <h2>Statistics</h2>
+            </header>
+            <main>
+                <div class="sceneContainer">
+					                
+                    <div class="inventoryContainer"></div>
+                </div>
+                
+                
+				<div id="optionsContainer"></div>
+				
+				<button class="back" onclick="window.location.href='welcome.html'">Start Again</button>
+            </main>
+        </div>
+
+		<script src="js/branches.js"></script>
+        <script src="js/story.js"></script>
+		
+		<script>
+			let state = JSON.parse(sessionStorage.getItem("state"));
+			let element = document.getElementsByClassName("inventoryContainer")[0];
+			let isTrue = false;
+			
+			let username = sessionStorage.getItem("username");
+			let difficulty = sessionStorage.getItem("difficulty");
+			let branchIndex = sessionStorage.getItem("currentBranchIndex");
+			
+			let timeSeconds = parseInt(sessionStorage.getItem("timeLimit") % 60);
+			let timeMinutes = parseInt(sessionStorage.getItem("timeLimit") / 60);
+			let timeLimit = timeMinutes + " minutes" + ", " + timeSeconds + " seconds";
+			
+			// Win/lose
+			let status;
+			if (branchIndex == 45 || branchIndex == 49) {
+				status = "You won.";
+			} else {
+				status = "You lost.";
+			}
+			
+			htmlToAdd = `<p>${status}<br><br>
+						Username: ${username}<br>
+						Difficulty: ${difficulty}<br>
+						Time Remaining: ${timeLimit}<br>
+						Items Collected:`; 
+
+			// Map variable names to formatted text
+			let inventoryItems = {
+			  'davidJobInfo': "David's job information",
+			  'divorceLetter': "Divorce letter",
+			  'gunKey': "Key",
+			  'gun': "Gun",
+			  'manifesto': "Manifesto"
+			};
+
+			// Loop through the inventory items
+			for (let key in inventoryItems) {
+			  if (state[key] === true) {
+				// First one won't need a comma
+				if (isTrue) {
+					htmlToAdd += ", "; 
+				}
+			    htmlToAdd += ` ${inventoryItems[key]}`;
+			    isTrue = true;
+			  }
+			}
+
+			// Inventory is empty
+			if (!isTrue) {
+				htmlToAdd += " None"; 
+			}
+			
+			element.innerHTML = htmlToAdd + "</p>";
+		</script>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ACCOUNT MANAGEMENT</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <div class="wrapper" id="wrapperStyle">
+            <header> 
+                <h1>Account Management</h1>
+                <p>Manage your account here, including the option to update your password, reset your save file or delete your account.</p>
+            </header>
+            <div class="account-actions">
+                <button id="update-password">Update Password</button>
+                <button onclick="resetSave()">Reset Save File</button>
+                <button onclick="deleteAccount()">Delete Account</button>
+				<button class="back" onclick="history.back()">Go back</button>
+            </div>
+        </div>
+		
+		<script src="js/utils.js"></script>
+        <script src="js/saveInventory.js"></script>
+		<script src="js/saveLoad.js"></script>
+        <script>
+			document.getElementById("wrapperStyle").style.fontSize = sessionStorage.getItem("tSize");
+			document.getElementById("wrapperStyle").style.color = sessionStorage.getItem("tColour");
+			document.getElementById("wrapperStyle").style.fontFamily = sessionStorage.getItem("tFont");
+			document.getElementById("wrapperStyle").style.backgroundColor = `rgba(0, 0, 0, ${sessionStorage.getItem("tBgOpacity")})`;
+		</script>
+    </body>
+</html>
+
+
+

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Takeback</title>
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body>
+        <div class="wrapper" id="wrapperStyle">
+            <header>
+                <h2>TAKEBACK</h2>
+            </header>
+            <main>
+                <div class="sceneContainer">
+                    <div class="image-container">
+                    	<img src="images/rooms/bathroom.jpg" alt="Bathroom">
+                    </div>
+                </div>
+                <div id="timer" class="timer-display"></div>
+                <div class="text-section">
+                    <div class="textContainer" id="dialogueBox"></div>
+                    <div id="optionsContainer"></div>
+                    <button class="inventoryButton" onclick="window.location.href='inventoryManagement.html'">Inventory</button>
+                    <button onclick="triggerSave()">Save Game</button>
+                </div>
+            </main>
+        </div>
+		
+        <script src="js/branches.js"></script>
+        <script src="js/saveInventory.js"></script>
+        <script src="js/story.js"></script>
+		<script src="js/timer.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/saveLoad.js"></script>
+    </body>
+</html>
